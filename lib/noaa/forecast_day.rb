@@ -32,7 +32,13 @@ module NOAA
     # Percentage probability of precipitation during the evening/night, between 6pm and 6am, as an integer (0-100)
     attr_reader :evening_precipitation_probability
 
+    # English name from NOAA for this time period
+    attr_reader :period_name
+
+    attr_reader :worded_forecast
+
     attr_writer :starts_at, :ends_at, :high, :low, :weather_summary, :weather_type_code, :image_url, #:nodoc:
-                :daytime_precipitation_probability, :evening_precipitation_probability #:nodoc:
+                :daytime_precipitation_probability, :evening_precipitation_probability, #:nodoc:
+                :period_name, :worded_forecast #:nodoc:
   end
 end

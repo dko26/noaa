@@ -32,7 +32,8 @@ module NOAA
     # NOAA.current_conditions_at_station when you need to get the latest conditions.
     #
     def current_conditions(lat, lng)
-      current_conditions_at_station(Station.closest_to(lat, lng).id)
+      #current_conditions_at_station(Station.closest_to(lat, lng).id)
+      CurrentConditions.from_xml(HttpService.new.get_forecast(1, lat, lng))
     end
     
     # 

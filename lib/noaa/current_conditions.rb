@@ -20,14 +20,28 @@ module NOAA
     # Time object containing the time at which these conditions were observed at the NOAA station
     #
     def observed_at
-      @observed_at ||= Time.parse(text_from_node('observation_time_rfc822'))
+      @observed_at ||= Time.parse(@doc.xpath(%q{/dwml/data[@type="current observations"]/time-layout/start-valid-time/text()}).to_s)
+    end
+
+
+    def observation_point_descr
+      @doc.xpath(%q{/dwml/data[@type="current observations"]/location/area-description/text()})
+    end
+
+    def observation_point_coord
+      "#{@doc.xpath(%q{/dwml/data[@type="current observations"]/location/point}).first['latitude']},
+      #{@doc.xpath(%q{/dwml/data[@type="current observations"]/location/point}).first['longitude']}"
+    end
+
+    def observation_point_url
+      @doc.xpath(%q{/dwml/data[@type="current observations"]/moreWeatherInformation/text()}).to_s
     end
 
     #
     # Text description of the current weather conditions, e.g. "Fair"
     #
     def weather_description
-      @weather_description ||= text_from_node('weather')
+      @weather_description ||= @doc.xpath(%q{/dwml/data[@type="current observations"]/parameters/weather/weather-conditions}).first['weather-summary']
     end
     alias_method :weather_summary, :weather_description
 
@@ -64,14 +78,14 @@ module NOAA
     # descriptions and their type codes.
     #
     def weather_type_code
-      @weather_type_code ||= text_from_node('icon_url_name').gsub(/^n|\.jpg$/, '').to_sym
+      @weather_type_code ||= text_from_node('conditions-icon').gsub(/^n|\.jpg$/, '').to_sym
     end
 
     # 
     # Return the NWS image URL for the current weather as string
     #
     def image_url
-      @image_url ||= "#{text_from_node('icon_url_base')}#{text_from_node('icon_url_name')}"
+      @image_url ||= @doc.xpath(%q{/dwml/data[@type="current observations"]/parameters/conditions-icon/icon-link/text()}).to_s
     end
 
     #
@@ -82,42 +96,42 @@ module NOAA
     #   conditions.temperature(:kelvin)  #=> anything else raises an exception
     #
     def temperature(unit = :f)
-      text_from_node_with_unit('temp', unit, :f, :c).to_i
+      @doc.xpath(%q{/dwml/data[@type="current observations"]/parameters/temperature[@type="apparent"]/value/text()}).first.text.to_f
     end
 
     # 
     # The current relative humidity percentage (0-100)
     #
     def relative_humidity
-      text_from_node('relative_humidity').to_i
+      @doc.xpath(%q{/dwml/data[@type="current observations"]/parameters/humidity/value/text()}).first.text.to_i
     end
 
     # 
     # The current cardinal or ordinal direction that the wind is coming from (e.g., "Northwest")
     #
     def wind_direction
-      text_from_node('wind_dir')
+      text_from_node('direction').to_s
     end
 
     # 
     # The current direction that the wind is coming from degrees (e.g. 330)
     #
     def wind_degrees
-      text_from_node('wind_degrees').to_i
+      @doc.xpath(%q{/dwml/data[@type="current observations"]/parameters/direction/value/text()}).first.text.to_f
     end
 
     # 
     # The current wind speed in miles per hour as a float (e.g., 3.45)
     #
     def wind_speed
-      text_from_node('wind_mph').to_f
+      @doc.xpath(%q{/dwml/data[@type="current observations"]/parameters/wind-speed[@type="sustained"]/value/text()}).first.text.to_f
     end
 
     # 
     # The current wind gust in miles per hour as a float, or nil if none
     #
     def wind_gust
-      text_from_node('wind_gust_mph').to_f
+      @doc.xpath(%q{/dwml/data[@type="current observations"]/parameters/wind-speed[@type="gust"]/value/text()}).first.text.to_f
     end
 
     # 
@@ -128,7 +142,7 @@ module NOAA
     #   conditions.pressure(:psi) #=> anything else raises an exception
     #
     def pressure(unit = :in)
-      text_from_node_with_unit('pressure', unit, :in, :mb).to_f
+      @doc.xpath(%q{/dwml/data[@type="current observations"]/parameters/pressure/value/text()}).first.text.to_f
     end
 
     # 
@@ -168,13 +182,13 @@ module NOAA
     # The current visibility in miles
     #
     def visibility
-      text_from_node('visibility_mi').to_f
+      @doc.xpath(%q{/dwml/data[@type="current observations"]/parameters/weather/weather-conditions/value/visibility/text()}).first.text.to_f
     end
 
     private
 
     def text_from_node(element_name)
-      @doc.xpath("/current_observation/#{element_name}[1]/child::text()").first.to_s
+      @doc.xpath("/data[@type=\"current observations\"]/#{element_name}[1]/child::text()").first.to_s
     end
 
     def text_from_node_with_unit(element_name, unit, *allowed_units)

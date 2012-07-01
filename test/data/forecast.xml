@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<dwml version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://graphical.weather.gov/xml/DWMLgen/schema/DWML.xsd">
+ <head>
+    <product concise-name="dwmlByDay" operational-mode="developmental" srsName="WGS 1984">
+      <creation-date refresh-frequency='PT1H'>2012-06-29T05:10:38-04:00</creation-date>
+     <category>current observations and forecast</category>
+    </product>
+    <source>
+      <production-center>Tampa Bay, FL</production-center>
+      <credit>http://www.srh.noaa.gov/tbw</credit>
+      <more-information>http://www.nws.noaa.gov/forecasts/xml/</more-information>
+    </source>
+  </head>
+  <data type="forecast">
+
+  <location>
+    <location-key>point1</location-key>
+    <description>Tampa, FL</description>
+    <point latitude="27.96" longitude="-82.48"/>
+    <city state="FL">Tampa</city>
+    <height datum="mean sea level">23</height>
+  </location>
+<moreWeatherInformation applicable-location="point1">http://forecast.weather.gov/MapClick.php?lat=27.96&amp;lon=-82.48</moreWeatherInformation>
+  <time-layout time-coordinate="local" summarization="12hourly">
+    <layout-key>k-p6h-n1-1</layout-key>
+      <start-valid-time>2012-06-29T10:00:00-04:00</start-valid-time>
+      <end-valid-time>2012-07-05T18:00:00-04:00</end-valid-time>
+  </time-layout>
+
+  <time-layout time-coordinate="local" summarization="12hourly">
+    <layout-key>k-p6h-n1-2</layout-key>
+      <start-valid-time>2012-06-29T10:00:00-04:00</start-valid-time>
+      <end-valid-time>2012-07-05T18:00:00-04:00</end-valid-time>
+  </time-layout>
+
+  <time-layout time-coordinate="local" summarization="12hourly">
+    <layout-key>k-p12h-n13-1</layout-key>
+      <start-valid-time period-name="Today">2012-06-29T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Tonight">2012-06-29T18:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Saturday">2012-06-30T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Saturday Night">2012-06-30T18:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Sunday">2012-07-01T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Sunday Night">2012-07-01T18:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Monday">2012-07-02T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Monday Night">2012-07-02T18:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Tuesday">2012-07-03T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Tuesday Night">2012-07-03T18:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Independence Day">2012-07-04T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Wednesday Night">2012-07-04T18:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Thursday">2012-07-05T06:00:00-04:00</start-valid-time>
+  </time-layout>
+
+  <time-layout time-coordinate="local" summarization="12hourly">
+    <layout-key>k-p24h-n7-1</layout-key>
+      <start-valid-time period-name="Today">2012-06-29T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Saturday">2012-06-30T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Sunday">2012-07-01T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Monday">2012-07-02T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Tuesday">2012-07-03T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Independence Day">2012-07-04T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Thursday">2012-07-05T06:00:00-04:00</start-valid-time>
+  </time-layout>
+
+  <time-layout time-coordinate="local" summarization="12hourly">
+    <layout-key>k-p24h-n6-2</layout-key>
+      <start-valid-time period-name="Tonight">2012-06-29T18:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Saturday Night">2012-06-30T18:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Sunday Night">2012-07-01T18:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Monday Night">2012-07-02T18:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Tuesday Night">2012-07-03T18:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Wednesday Night">2012-07-04T18:00:00-04:00</start-valid-time>
+  </time-layout>
+
+
+  <parameters applicable-location="point1">
+
+    <temperature type="maximum" units="Fahrenheit" time-layout="k-p24h-n7-1">
+      <name>Daily Maximum Temperature</name>
+        <value>91</value>
+        <value>92</value>
+        <value>92</value>
+        <value>92</value>
+        <value>92</value>
+        <value>91</value>
+        <value>91</value>
+    </temperature>
+
+    <temperature type="minimum" units="Fahrenheit" time-layout="k-p24h-n6-2">
+      <name>Daily Minimum Temperature</name>
+        <value>73</value>
+        <value>75</value>
+        <value>76</value>
+        <value>76</value>
+        <value>77</value>
+        <value>76</value>
+    </temperature>
+
+    <probability-of-precipitation  type="12 hour" units="percent" time-layout="k-p12h-n13-1">
+      <name>12 Hourly Probability of Precipitation</name>
+        <value xsi:nil="true"></value>
+        <value xsi:nil="true"></value>
+        <value xsi:nil="true"></value>
+        <value xsi:nil="true"></value>
+        <value>20</value>
+        <value>10</value>
+        <value>20</value>
+        <value>10</value>
+        <value>20</value>
+        <value>10</value>
+        <value>20</value>
+        <value>10</value>
+        <value>30</value>
+    </probability-of-precipitation>
+
+    <weather time-layout="k-p12h-n13-1">
+      <name>Weather Type, Coverage, Intensity</name>
+        <weather-conditions weather-summary="Sunny"/>
+        <weather-conditions weather-summary="Mostly Clear"/>
+        <weather-conditions weather-summary="Mostly Sunny"/>
+        <weather-conditions weather-summary="Partly Cloudy"/>
+        <weather-conditions weather-summary="Slight Chc Tstms"/>
+        <weather-conditions weather-summary="Slight Chc Tstms"/>
+        <weather-conditions weather-summary="Slight Chc Tstms"/>
+        <weather-conditions weather-summary="Slight Chc Tstms"/>
+        <weather-conditions weather-summary="Slight Chc Tstms"/>
+        <weather-conditions weather-summary="Slight Chc Tstms"/>
+        <weather-conditions weather-summary="Slight Chc Tstms"/>
+        <weather-conditions weather-summary="Slight Chc Tstms"/>
+        <weather-conditions weather-summary="Chance Tstms"/>
+    </weather>
+
+    <conditions-icon type="forecast-NWS" time-layout="k-p12h-n13-1">
+      <name>Conditions Icon</name>        <icon-link>http://forecast.weather.gov/images/wtf/sct.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/sct.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/sct.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/sct.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/sct.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_ntsra10.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_tsra20.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_ntsra10.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_tsra20.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_ntsra10.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_tsra20.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_ntsra10.jpg</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/hi_tsra30.jpg</icon-link>
+    </conditions-icon>
+
+    <hazards time-layout="k-p6h-n1-1">
+      <name>Watches, Warnings, and Advisories</name>
+      <hazard-conditions>
+        <hazard headline="Flood Warning">
+          <hazardTextURL>http://forecast.weather.gov/showsigwx.php?warnzone=FLZ051&amp;warncounty=FLC057&amp;firewxzone=FLZ051&amp;local_place1=Tampa+FL&amp;product1=Flood+Warning</hazardTextURL>
+        </hazard>
+      </hazard-conditions>
+    </hazards>
+
+    <hazards time-layout="k-p6h-n1-2">
+      <name>Watches, Warnings, and Advisories</name>
+      <hazard-conditions>
+        <hazard headline="Hazardous Weather Outlook">
+          <hazardTextURL>http://forecast.weather.gov/showsigwx.php?warnzone=FLZ051&amp;warncounty=FLC057&amp;firewxzone=FLZ051&amp;local_place1=Tampa+FL&amp;product1=Hazardous+Weather+Outlook</hazardTextURL>
+        </hazard>
+      </hazard-conditions>
+    </hazards>
+
+    <wordedForecast time-layout="k-p12h-n13-1" dataSource="tbwNetcdf" wordGenerator="markMitchell">
+      <name>Text Forecast</name>
+        <text>Sunny, with a high near 91. Southwest wind between 6 and 9 mph. </text>
+        <text>Mostly clear, with a low around 73. West wind between 3 and 7 mph. </text>
+        <text>Mostly sunny, with a high near 92. Heat index values as high as 98. Calm wind becoming west southwest between 7 and 10 mph. </text>
+        <text>Partly cloudy, with a low around 75. West wind between 4 and 7 mph becoming calm. </text>
+        <text>A 20 percent chance of showers and thunderstorms after 2pm.  Mostly sunny, with a high near 92. Calm wind becoming west southwest between 6 and 9 mph. </text>
+        <text>A 10 percent chance of showers and thunderstorms before 8pm.  Partly cloudy, with a low around 76. West northwest wind between 7 and 10 mph becoming calm. </text>
+        <text>A 20 percent chance of showers and thunderstorms after 2pm.  Mostly sunny, with a high near 92. Calm wind becoming west around 6 mph. </text>
+        <text>A 10 percent chance of showers and thunderstorms.  Partly cloudy, with a low around 76. Northwest wind between 5 and 8 mph. </text>
+        <text>A 20 percent chance of showers and thunderstorms.  Mostly sunny, with a high near 92. Calm wind becoming west northwest between 5 and 8 mph. </text>
+        <text>A 10 percent chance of showers and thunderstorms.  Partly cloudy, with a low around 77.  </text>
+        <text>A 20 percent chance of showers and thunderstorms.  Mostly sunny, with a high near 91.  </text>
+        <text>A 10 percent chance of showers and thunderstorms.  Partly cloudy, with a low around 76.  </text>
+        <text>A 30 percent chance of showers and thunderstorms.  Mostly sunny, with a high near 91.  </text>
+    </wordedForecast>
+
+</parameters>
+</data>
+<data type="current observations">
+	<location>
+		<location-key>point1</location-key>
+		<point latitude="27.97" longitude="-82.53"/>
+		<area-description>Tampa International Airport, FL</area-description>
+		<height datum="mean sea level" height-units="feet">10</height>
+	</location>
+	<moreWeatherInformation applicable-location="point1">http://www.nws.noaa.gov/data/obhistory/KTPA.html</moreWeatherInformation>	
+  <time-layout time-coordinate="local">	
+    <layout-key>k-p1h-n1-1</layout-key>	
+    <start-valid-time period-name="current">2012-06-29T08:53:00-04:00</start-valid-time>	
+  </time-layout>	
+  <parameters applicable-location="point1">		
+    <temperature type="apparent" units="Fahrenheit" time-layout="k-p1h-n1-1">			
+      <value>80</value>		
+    </temperature>		
+    <temperature type="dew point" units="Fahrenheit" time-layout="k-p1h-n1-1">			
+      <value>67</value>		
+    </temperature>		
+    <humidity type="relative" time-layout="k-p1h-n1-1">			
+      <value>64</value>		
+    </humidity>		
+    <weather time-layout="k-p1h-n1-1">			
+      <name>Weather Type, Coverage, Intensity</name>			
+      <weather-conditions weather-summary="Fair"/>			
+      <weather-conditions>				
+        <value>					
+          <visibility units="statute miles">10.00</visibility>				
+        </value>			
+      </weather-conditions>		
+    </weather>		
+    <conditions-icon type="forecast-NWS" time-layout="k-p1h-n1-1">			
+      <name>Conditions Icon</name>			
+      <icon-link>http://forecast.weather.gov/images/wtf/sct.jpg</icon-link>		
+    </conditions-icon>		
+    <direction type="wind" units="degrees true" time-layout="k-p1h-n1-1">			
+      <value>0</value>		
+    </direction>		
+    <pressure type="barometer" units="inches of mercury" time-layout="k-p1h-n1-1">			
+      <value>30.07</value>		
+    </pressure>		
+    <wind-speed type="gust" units="knots" time-layout="k-p1h-n1-1">			
+      <value>2</value>		
+    </wind-speed>		
+    <wind-speed type="sustained" units="knots" time-layout="k-p1h-n1-1">			
+      <value>0</value>		
+    </wind-speed>	
+  </parameters></data>
+</dwml>

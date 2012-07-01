@@ -22,9 +22,9 @@ module NOAA
 
     # 
     # The number of days provided by the forecast
-    #
+    
     def length
-      @length ||= @doc.find(%q{/dwml/data/time-layout[@summarization='24hourly'][1]/start-valid-time}).length
+      @length ||= @doc.xpath(%q{/dwml/data[@type="forecast"]/time-layout[layout-key = 'k-p24h-n7-1']/start-valid-time}).count
     end
 
     # 
@@ -47,9 +47,11 @@ module NOAA
           day.ends_at = ends[i]
           day.high = maxima[i]
           day.low = minima[i]
+          day.period_name = period_names[i]
           day.weather_summary = weather_summaries[i]
           day.weather_type_code = weather_type_codes[i]
           day.image_url = image_urls[i]
+          day.worded_forecast = worded_forecasts[i]
           day.daytime_precipitation_probability = precipitation_probabilities[i*2]
           day.evening_precipitation_probability = precipitation_probabilities[i*2+1]
         end
@@ -58,37 +60,49 @@ module NOAA
     end
 
     def starts
-      @starts ||= @doc.find(%q{/dwml/data/time-layout[@summarization='24hourly'][1]/start-valid-time/text()}).map do |node|
+      @starts ||= @doc.xpath(%q{/dwml/data[@type="forecast"]/time-layout[layout-key = 'k-p12h-n13-1']/start-valid-time/text()}).map do |node|
         Time.parse(node.to_s)
       end
     end
 
     def ends
-      @ends ||= @doc.find(%q{/dwml/data/time-layout[@summarization='24hourly'][1]/end-valid-time/text()}).map do |node|
+      @ends ||= @doc.search(%q{/dwml/data/time-layout[@summarization='24hourly'][1]/end-valid-time/text()}).map do |node|
         Time.parse(node.to_s)
       end
     end
 
+    def period_names
+      @period_name ||= @doc.xpath(%q{/dwml/data[@type="forecast"]/time-layout[layout-key = 'k-p12h-n13-1']/start-valid-time}).map do |node|
+        node['period-name'].to_s
+      end
+    end
+
     def maxima
-      @maxima ||= @doc.find(%q{/dwml/data/parameters[1]/temperature[@type='maximum'][@units='Fahrenheit'][1]/value/text()}).map do |node|
+      @maxima ||= @doc.xpath(%q{/dwml/data[@type="forecast"]/parameters/temperature[@type="maximum"]/value/text()}).map do |node|
         node.to_s.to_i
       end
     end
 
     def minima
-      @minima ||= @doc.find(%q{/dwml/data/parameters[1]/temperature[@type='minimum'][@units='Fahrenheit'][1]/value/text()}).map do |node|
+      @minima ||= @doc.xpath(%q{/dwml/data[@type="forecast"]/parameters/temperature[@type="minimum"]/value/text()}).map do |node|
         node.to_s.to_i
       end
     end
 
     def weather_summaries
-      @weather_summaries ||= @doc.find(%q{/dwml/data/parameters[1]/weather[1]/weather-conditions}).map do |node|
+      @weather_summaries ||= @doc.xpath(%q{/dwml/data[@type="forecast"]/parameters/weather/weather-conditions['weather-summary']}).map do |node|
         node['weather-summary'].to_s
       end
     end
 
+    def worded_forecasts
+      @worded_forecasts ||= @doc.xpath(%q{/dwml/data[@type="forecast"]/parameters/wordedForecast/text/text()}).map do |node|
+        node.to_s
+      end
+    end
+
     def image_urls
-      @image_urls ||= @doc.find(%q{/dwml/data/parameters[1]/conditions-icon/icon-link/text()}).map do |node|
+      @image_urls ||= @doc.xpath(%q{/dwml/data[@type="forecast"]/parameters/conditions-icon/icon-link/text()}).map do |node|
         node.to_s
       end
     end
@@ -100,7 +114,7 @@ module NOAA
     end
 
     def precipitation_probabilities
-      @precipitation_probabilities ||= @doc.find(%q{/dwml/data/parameters[1]/probability-of-precipitation[1]/value/text()}).map do |node|
+      @precipitation_probabilities ||= @doc.search(%q{/dwml/data/parameters[1]/probability-of-precipitation[1]/value/text()}).map do |node|
         node.to_s.to_i
       end
     end
