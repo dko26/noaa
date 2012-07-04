@@ -109,7 +109,7 @@ module NOAA
 
     def weather_type_codes
       @weather_type_codes ||= image_urls.map do |url|
-        url.match(/n?([a-z_]+)\d*\.jpg$/)[1].to_sym
+        url.match(/n?([a-z_]+)\d*\.(jpg|png|gif)$/)[1].to_sym
       end
     end
 
