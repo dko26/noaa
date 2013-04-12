@@ -15,7 +15,7 @@ daily forecasts (through NOAA::Forecast).
 
 ## Requirements:
 
-- Nokogiri
+- Nokogiri >= 0.9.7
 - geokit >= 1.5.0
 
 ## Installation:
